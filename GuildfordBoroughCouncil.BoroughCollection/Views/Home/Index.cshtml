@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Borough art collection";
+}
+<div class="page-header">
+    <h1>Welcome to Guildford's online art collection</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <p>This is an online record of the collection, with information on the artists who created them.</p>
+
+        <p>We will be adding to the database, and would like to hear from anyone who has information on any of the artists or works in our collection.</p>
+
+        <p>In some cases, we have additional information on the artists, which is not included in this database, and we welcome research enquiries.</p>
+
+        <p>We are only able to include images of work if we have the permission of the copyright holder and so some of the images are not featured if we have been unable to trace them.</p>
+
+        <p>For more information please visit <a href="http://www.guildford.gov.uk/article/10157/View-the-borough-collection-online">About the collection</a> on our website.</p>
+    </div>
+    <div class="col-md-4">
+        @using (Html.BeginForm("search", "Home"))
+        {
+            <h2>Search</h2>
+            <div class="input-group">
+                <input type="text" name="q" class="form-control">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </span>
+            </div>
+        }
+
+        <h2>View by artist</h2>
+        <div class="input-group">
+            @Html.DropDownList("artist", (SelectList)ViewBag.Artists, "Select an artist", new { @class = "form-control" })
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-primary" id="viewWorks">View works</button>
+            </span>
+        </div>
+    </div>
+</div>
+
+@section FooterScripts
+{
+    <script>
+        jQuery(function ($) {
+            $('#viewWorks').on('click', function () {
+                var artist = $('#artist').val();
+                if (artist !== '') {
+                    window.location.href = BaseUrl + 'artist/' + artist;
+                }
+            });
+        });
+    </script>
+}

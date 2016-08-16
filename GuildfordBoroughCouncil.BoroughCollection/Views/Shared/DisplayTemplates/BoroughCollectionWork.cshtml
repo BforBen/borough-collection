@@ -1,0 +1,23 @@
+﻿@model GuildfordBoroughCouncil.BoroughCollection.Models.BoroughCollectionWork
+<div class="row">
+    <div class="col-md-2 text-center pad-top">
+        <img src="~/assets/images/thumbnails/@Model.ImageName" alt="@Model.WorkTitle" class="img-thumbnail" data-toggle="modal" data-target="#zoomart" data-name="@Model.ImageName">
+    </div>
+    <div class="col-md-push-7 col-md-3 small pad-top">
+        <p>
+            Artist: <strong>@Html.ActionLink(Model.ArtistDetails.ArtistName, "Artist", new { Id = Model.Artist })</strong><br>
+            Media: <strong>@Html.DisplayFor(w => Model.Media)</strong><br>
+            Period: <strong>@Html.DisplayFor(w => Model.Period)</strong><br>
+            Subject: <strong>@Html.DisplayFor(w => Model.Subject)</strong>
+
+            @if (!String.IsNullOrWhiteSpace(Model.WorkSize))
+            {
+                <text><br>Work size: <strong>@Html.DisplayFor(w => Model.WorkSize)</strong></text>
+            }
+        </p>
+    </div>
+    <div class="col-md-7 col-md-pull-3">
+        <h4><strong>@Html.DisplayFor(w => Model.WorkTitle)</strong></h4>
+        <p>@Html.DisplayFor(w => Model.Description)</p>
+    </div>
+</div>
